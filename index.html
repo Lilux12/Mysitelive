@@ -3,184 +3,53 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Простой сайт</title>
-    <style>
-        body {
-            font-family: Arial, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #f9f9f9;
-        }
-
-        header {
-            background-color: #007bff;
-            color: white;
-            padding: 10px 20px;
-        }
-
-        nav ul {
-            list-style-type: none;
-            padding: 0;
-        }
-
-        nav ul li {
-            display: inline;
-            margin-right: 15px;
-        }
-
-        nav ul li a {
-            color: white;
-            text-decoration: none;
-        }
-
-        main {
-            padding: 20px;
-        }
-
-        .btn {
-            background-color: #007bff;
-            color: white;
-            border: none;
-            padding: 10px 15px;
-            text-align: center;
-            text-decoration: none;
-            display: inline-block;
-            margin-top: 10px;
-            cursor: pointer;
-            border-radius: 5px;
-        }
-
-        .admin-panel {
-            display: none;
-            padding: 20px;
-            background: #e7f3fe;
-            border: 1px solid #a2c2e9;
-            border-radius: 5px;
-            margin-top: 20px;
-        }
-
-        .admin-panel.active {
-            display: block;
-        }
-        
-        .feedback {
-            margin-top: 15px;
-        }
-
-        .correct {
-            color: green;
-            font-weight: bold;
-        }
-
-        .incorrect {
-            color: red;
-            font-weight: bold;
-        }
-    </style>
+    <title>Главная страница</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="script.js" defer></script>
 </head>
 <body>
     <header>
-        <h1>Добро пожаловать на мой сайт</h1>
         <nav>
-            <ul>
-                <li><a href="#about">О нас</a></li>
-                <li><a href="#services">Услуги</a></li>
-                <li><a href="#contact">Контакты</a></li>
-                <li><a href="#test">Тест</a></li>
-                <li><a href="#reviews">Отзывы</a></li>
-                <li><a href="#admin" onclick="showAdminPanel()">Админ</a></li>
-            </ul>
+            <a href="index.html">Главная</a>
+            <a href="#about">О нас</a>
+            <a href="#contact">Контакты</a>
+            <button id="admin-btn">Администратор</button>
         </nav>
     </header>
+
     <main>
+        <section id="home">
+            <h1>Добро пожаловать на наш сайт</h1>
+            <p>Здесь много контента и кнопок!</p>
+            <button>Кнопка 1</button>
+            <button>Кнопка 2</button>
+            <button>Кнопка 3</button>
+        </section>
+
         <section id="about">
             <h2>О нас</h2>
-            <p>Мы — команда разработчиков, которые создают потрясающие веб-сайты.</p>
-            <a class="btn" href="#test">Начать тест</a>
+            <p>Мы создаём самые стильные и удобные сайты!</p>
         </section>
-        <section id="services">
-            <h2>Наши услуги</h2>
-            <ul>
-                <li>Веб-дизайн</li>
-                <li>Разработка веб-приложений</li>
-                <li>SEO-оптимизация</li>
-            </ul>
-        </section>
+
         <section id="contact">
             <h2>Контакты</h2>
-            <p>Вы можете связаться с нами по электронной почте: contact@example.com</p>
-        </section>
-        <section id="test" class="test-container">
-            <h2>Тест по математике</h2>
-            <div class="question">Какое значение имеет 5 + 3?</div>
-            <button class="btn" onclick="checkMathAnswer(8)">8</button>
-            <button class="btn" onclick="checkMathAnswer(7)">7</button>
-            <button class="btn" onclick="checkMathAnswer(9)">9</button>
-            <p id="result" class="feedback"></p>
-        </section>
-        <section id="reviews" class="feedback-container">
-            <h3>Оставьте свой отзыв</h3>
-            <input type="text" id="reviewInput" placeholder="Введите ваш отзыв..." />
-            <button class="btn" onclick="submitReview()">Отправить</button>
-            <div id="reviewsList"></div>
-        </section>
-        <section id="admin" class="admin-panel">
-            <h2>Панель администратора</h2>
-            <input type="password" id="adminCode" placeholder="Введите код администратора..." />
-            <button class="btn" onclick="checkAdminCode()">Войти</button>
-            <div id="adminActions" style="display: none;">
-
-                <h3>Действия администратора</h3>
-                <p>Здесь вы можете что-то сделать, например, просмотреть отзывы и т.д.</p>
-            </div>
+            <form id="contact-form">
+                <label for="name">Имя:</label>
+                <input type="text" id="name" name="name" required>
+                <label for="message">Сообщение:</label>
+                <textarea id="message" name="message" required></textarea>
+                <button type="submit">Отправить</button>
+            </form>
         </section>
     </main>
-    <footer>
-        <p>&copy; 2023 Мой сайт. Все права защищены.</p>
-    </footer>
 
-    <script>
-        function checkMathAnswer(answer) {
-            const result = document.getElementById('result');
-            if (answer === 8) {
-                result.textContent = 'Правильно! Отлично знаете математику!';
-                result.className = 'feedback correct';
-            } else {
-                result.textContent = 'Неправильно. Попробуйте снова.';
-                result.className = 'feedback incorrect';
-            }
-        }
-
-        function submitReview() {
-            const reviewInput = document.getElementById('reviewInput');
-            const reviewsList = document.getElementById('reviewsList');
-            const review = reviewInput.value;
-            if (review) {
-                const reviewDiv = document.createElement('div');
-                reviewDiv.classList.add('review');
-                reviewDiv.textContent = review;
-                reviewsList.appendChild(reviewDiv);
-                reviewInput.value = ''; // Очистить поле ввода
-            } else {
-                alert('Пожалуйста, введите отзыв.');
-            }
-        }
-
-        function showAdminPanel() {
-            const adminPanel = document.getElementById('admin');
-            adminPanel.scrollIntoView(); // Прокрутка к админ панели
-        }
-
-        function checkAdminCode() {
-            const enteredCode = document.getElementById('adminCode').value;
-            const adminActions = document.getElementById('adminActions');
-            if (enteredCode === '12347') {
-                adminActions.style.display = 'block';
-                alert('Добро пожаловать, администратор!');
-            } else {
-                alert('Неправильный код. Пожалуйста, попробуйте снова.');
-            }
-        }
-    </script>
+    <div id="admin-modal" class="hidden">
+        <div class="modal-content">
+            <h2>Введите пароль</h2>
+            <input type="password" id="admin-password" placeholder="Пароль">
+            <button id="submit-password">Войти</button>
+            <button id="close-modal">Закрыть</button>
+        </div>
+    </div>
 </body>
 </html>
