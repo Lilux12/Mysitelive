@@ -5,7 +5,50 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Простой сайт</title>
     <style>
-        /* Ваши стили остаются прежними */
+        body {
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #f9f9f9;
+        }
+
+        header {
+            background-color: #007bff;
+            color: white;
+            padding: 10px 20px;
+        }
+
+        nav ul {
+            list-style-type: none;
+            padding: 0;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: white;
+            text-decoration: none;
+        }
+
+        main {
+            padding: 20px;
+        }
+
+        .btn {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            text-align: center;
+            text-decoration: none;
+            display: inline-block;
+            margin-top: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+        }
 
         .admin-panel {
             display: none;
@@ -86,6 +129,7 @@
             <input type="password" id="adminCode" placeholder="Введите код администратора..." />
             <button class="btn" onclick="checkAdminCode()">Войти</button>
             <div id="adminActions" style="display: none;">
+
                 <h3>Действия администратора</h3>
                 <p>Здесь вы можете что-то сделать, например, просмотреть отзывы и т.д.</p>
             </div>
@@ -110,7 +154,6 @@
         function submitReview() {
             const reviewInput = document.getElementById('reviewInput');
             const reviewsList = document.getElementById('reviewsList');
-
             const review = reviewInput.value;
             if (review) {
                 const reviewDiv = document.createElement('div');
